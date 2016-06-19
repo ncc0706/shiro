@@ -1,0 +1,114 @@
+[
+    {
+        "id": 7,
+        "text": "系统管理",
+        "checked": false,
+        "selected": false,
+        "children": [
+            {
+                "id": 1,
+                "text": "用户管理",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/usersys.do"
+                }
+            },
+            {
+                "id": 18,
+                "text": "用户登录日志查询",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/userloginlog.do"
+                }
+            },
+            {
+                "id": 162,
+                "text": "修改我的密码",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/updateMySysPwd.do"
+                }
+            },
+            {
+                "id": 124,
+                "text": "系统日志查询",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/sysloglist.do"
+                }
+            },
+            {
+                "id": 2,
+                "text": "角色管理",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/rolesys.do"
+                }
+            },
+            {
+                "id": 3,
+                "text": "菜单管理",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/menusys.do"
+                }
+            },
+            {
+                "id": 14,
+                "text": "部门管理",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/deptsys.do"
+                }
+            }
+        ],
+        "attributes": {
+            "url": "/#"
+        }
+    },
+    {
+        "id": 164,
+        "text": "学生信息管理系统",
+        "checked": false,
+        "selected": false,
+        "children": [
+            {
+                "id": 169,
+                "text": "学生信息分类统计",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/stuStatistics.do"
+                }
+            },
+            {
+                "id": 165,
+                "text": "导入学生信息列表",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/studentinfos.do"
+                }
+            },
+            {
+                "id": 170,
+                "text": "测试001",
+                "checked": false,
+                "selected": false,
+                "attributes": {
+                    "url": "/adfadsf"
+                }
+            }
+        ],
+        "attributes": {
+            "url": "/#"
+        }
+    }
+]

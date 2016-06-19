@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
+	<mvc:annotation-driven />
+
+	<!-- 它背后注册了很多用于解析注解的处理器,其中就包括<context:annotation-config/>配置的注解所使用的处理器 -->
+	<!-- 所以配置了<context:component-scan base-package="">之后,便无需再配置<context:annotation-config> -->
+	<context:component-scan base-package="com.xlinyu" />
+
+	<!--加载系统属性属性文件 -->
+	<context:property-placeholder location="classpath:config/system.properties" />
+
+	<mvc:resources mapping="/static/**" location="/static/" />
+	<mvc:resources mapping="/webjars/**" location="/webjars/" />
+
+	<!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->  
+    <mvc:view-controller path="/" view-name="/"/>
+
+	<!-- 配置SpringMVC的视图解析器 -->  
+    <!-- 其viewClass属性的默认值就是org.springframework.web.servlet.view.JstlView -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="${web.view.prefix}" p:suffix="${web.view.suffix}"></bean>
+
+</beans>

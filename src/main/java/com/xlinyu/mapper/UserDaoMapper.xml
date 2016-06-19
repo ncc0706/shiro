@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xlinyu.dao.UserDaoMapper">
+	
+	<resultMap id="userMap" type="com.xlinyu.domain.User">
+		<id property="id" column="id"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+	
+		<!-- 进行 多表关联插叙，先关联user和role -->
+		<collection property="roles" javaType="list" ofType="com.xlinyu.domain.Role">
+			<id property="id" column="role_id"/>
+			<result property="name" column="role_name"/>
+			<!-- 再在role中关联role和permission -->
+			<collection property="permissions" javaType="list" ofType="com.xlinyu.domain.Permission">
+				<id property="id" column="permission_id"/>
+				<result property="name" column="permission_name"/>
+			</collection>
+		</collection>
+	</resultMap>
+	
+	<!--  通过User来查找Role   -->  
+    <!-- <select id="selectRoleByUser" parameterType="int" resultMap="RoleMap">  
+        select * from tbl_role_user user_id  = #{id}   
+    </select>  
+    
+
+	<resultMap  id="roleMap" type="com.jay.demo.bean.User">
+		<result property="id" column="ROLE_ID" />
+		<result property="name" column="ROLE_NAME" />
+	</resultMap>
+	
+	<resultMap id="permissionMap" type="com.jay.demo.bean.Permission">
+		<result property="id" column="PERMISSION_ID" />
+		<result property="name" column="PERMISSION_NAME" />
+	</resultMap> -->
+	
+	
+
+<sql id="select-base-01">  
+        SELECT   
+            u.id,  
+            u.username,  
+            u.password,  
+            r.role_id,  
+            r.role_name,
+            p.permission_id,
+            p.permission_name
+        FROM  
+          tb_user as u,  
+          tb_role as r,  
+          tb_user_role as ur,
+          tb_permission as p,
+          tb_role_permission rp
+        WHERE  
+          u.id = ur.uid  
+        AND  
+          r.role_id = ur.rid  
+        and 
+        	r.role_id = rp.rid
+        and 
+        	p.permission_id = rp.pid
+    </sql>  
+    
+    <select id="findUserByUsername" parameterType="string" resultMap="userMap">  
+       <include refid="select-base-01" />  
+        AND u.username = #{username}    
+    </select>
+    
+</mapper>
